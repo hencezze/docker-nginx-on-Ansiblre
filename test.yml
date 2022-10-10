@@ -1,0 +1,18 @@
+---
+- name: Install Docker
+  hosts: docker
+  become: yes
+  tasks:
+    - name: Docker's block
+      block:
+        - name: Was Docker installed?
+          command: 'systemctl status "{{ item }}"'
+          register: package_check
+          ignore_errors: True
+          loop:
+            - mc
+          register: docker
+
+        - name: Check result
+          debug:
+            msg: "{{ docker }}"
