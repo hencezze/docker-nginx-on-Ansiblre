@@ -44,6 +44,7 @@
             - curl
             - gnupg
             - lsb-release
+            - htpasswd
 
         - name: Add Docker Universe
           apt_repository:
@@ -70,7 +71,7 @@
 
       when: docker['failed'] == true
       
-    - name: Docker-compose's block
+    - name: NGINX block
       block:
 
         - name: htpasswd
